@@ -1,0 +1,30 @@
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+int *fib( int n )
+{
+    if( n == 1 )
+    {   
+        int *m = &n;
+        return m;
+    }
+    return nullptr;
+}
+
+int main()
+{
+    int *call = fib(0);
+    
+    if( call == nullptr )
+    {
+        cout << "nullptr";
+    }
+    else
+    {
+        cout << call;
+    }
+    
+    return 0;
+}
