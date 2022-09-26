@@ -134,16 +134,19 @@ int main()
     vector< long long int > holder( n + 1, 0 );
 
     holder[ 0 ] = 0;
-    holder[ 1 ] = 1;
-
+    if( n >= 1 )
+    { 
+        holder[ 1 ] = 1;
+    }
+    
     for( int i = 0; i <= n; i++ )
     {
-        if( ( i + 1 ) <= holder.size() ) 
+        if( ( i + 1 ) <= n ) 
         {
             holder[ i + 1 ] = holder[ i + 1 ] + holder[ i ];
         }
 
-        if( ( i + 2 ) <= holder.size() )
+        if( ( i + 2 ) <= n )
         {
             holder[ i + 2 ] = holder[ i + 2 ] + holder[ i ];
         }
