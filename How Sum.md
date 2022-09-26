@@ -390,3 +390,50 @@ int main()
     return 0;
 }
 
+## tabulation
+
+#include<iostream>
+#include<vector>
+#include<optional>
+
+using namespace std;
+
+int main()
+{
+    vector<int> numbers = { 7, 14 };
+    int targetSum = 300;
+
+    vector<optional<vector<int>>> matrix( targetSum + 1, nullopt );
+
+    matrix[0] = vector<int>{};
+
+    for( int i = 0; i <= targetSum; i++ )
+    {
+        if( matrix[i] != nullopt )
+        {
+            for( int j = 0; j < numbers.size(); j++ )
+            {
+                if( i + numbers[j] <= targetSum )
+                {
+                    optional<vector<int>> temp = matrix[i];
+                    temp->push_back( numbers[j]);
+                    matrix[i+numbers[j]] = temp;
+                }
+            }
+        }
+    }
+
+    if( matrix[targetSum] == nullopt )
+    {
+        cout << "It's not possible to generate the targetSum using the numbers of the array";
+    }
+    else
+    {
+        for( int i = 0; i < matrix[targetSum]->size(); i++ )
+        {
+            cout << matrix[targetSum]->operator[](i) << " ";
+        }
+    }
+
+    return 0;
+}
