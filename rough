@@ -1,0 +1,37 @@
+#include<iostream>
+#include<vector>
+#include<map>
+
+using namespace std;
+
+
+    map< int, int> mapper;
+    
+    int calcCost( int n, vector<int> &cost )
+    {
+        if( mapper.find( n ) != mapper.end() )
+        {
+            return mapper[n];
+        }
+        if( n == 0 )
+        {
+            return cost[0];
+        }
+        if( n == 1 )
+        {
+            return cost[1];
+        }
+        
+        int val = min( calcCost( n - 1, cost ), calcCost( n - 2, cost ) ) + cost[n];
+        
+        mapper.insert( { n, val } );
+        return val;
+    }
+        
+    int main() {
+        vector<int> cost = { 10, 15, 20};
+        cost.push_back( 0 );
+        int result = calcCost( cost.size(), cost );
+        cout << result;
+        return 0;
+    }
