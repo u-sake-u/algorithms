@@ -11,12 +11,15 @@ using namespace std;
 
 int main()
 {
+    //input
     long long int n = 30;
     
+    //base values
     long long int a = 0;
     long long int b = 1;
     long long int c = 0;
 
+    //iteration
     for( long long int i = 2; i <= n; i++ )
     {
         c = a + b;
@@ -24,6 +27,7 @@ int main()
         b = c;
     }
 
+    //parsing
     cout << "The nth Fibonacci number is:" << c;
 
     return 0;
@@ -60,12 +64,21 @@ long long int fib( long long int n )
 
 int main()
 {
+    //input
     long long int n = 30;
+    
+    //function call
     long long int result = fib( n ); 
 
+    //parsing
     cout << result;
 }
 ```
+
+***Issues:***
+
+- works for small test cases: 1, 2, 5, 10
+- stack overflows or program takes too long for large test cases: 60, 90
 
 ***Complexities:***
 
@@ -82,10 +95,13 @@ using namespace std;
 
 long long int fib( long long int n, map< int, int > &holder )
 {
+    //memoization look-up
     if( holder.find( n ) != holder.end() )
     {
         return holder[n];
     }
+
+    //base case
     if( n == 0 )
     {
         return 0;
@@ -95,7 +111,10 @@ long long int fib( long long int n, map< int, int > &holder )
         return 1;
     }
 
+    //recursion call
     long long int value = fib( n - 1, holder ) + fib( n - 2, holder );
+    
+    //memoization 
     holder.insert( { n, value } );
 
     return holder[n];
@@ -103,16 +122,25 @@ long long int fib( long long int n, map< int, int > &holder )
 
 int main()
 {
+    //input
+    long long int n = 40;
+
+    //map object
     map< int, int > holder;
 
-    long long int n = 40;
+    //function call
     long long int result = fib( n, holder );
 
+    //parsing
     cout << result;
 
     return 0;
 }
 ```
+
+***Issues***
+
+- No issues
 
 ***Complexities:***
 
@@ -129,16 +157,20 @@ using namespace std;
 
 int main()
 {
+    //input
     long long int n = 30;
 
+    //DP table
     vector< long long int > holder( n + 1, 0 );
 
+    //base case
     holder[ 0 ] = 0;
     if( n >= 1 )
     { 
         holder[ 1 ] = 1;
     }
     
+    //iteration logic
     for( int i = 0; i <= n; i++ )
     {
         if( ( i + 1 ) <= n ) 
@@ -152,6 +184,7 @@ int main()
         }
     }
 
+    //parsing
     long long int result = holder.back();
     cout << result;
 
