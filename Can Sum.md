@@ -12,6 +12,7 @@ using namespace std;
 
 bool canSum( int targetSum, vector<int> &numbers)
 {
+    //base case 
     if( targetSum == 0 )
     {
         return true;
@@ -21,6 +22,7 @@ bool canSum( int targetSum, vector<int> &numbers)
         return false;
     }
 
+    //recursion case
     for( int i = 0; i < numbers.size(); i++ )
     {
         int remainder = targetSum - numbers[i];
@@ -56,6 +58,12 @@ int main()
 }
 ```
 
+***Issues:***
+1) Works for smaller values: 8, { 2, 3, 5 }
+2) Takes forever or stack overflows for large values: 300, { 7, 14 };
+
+Reason: The search space becomes enormous
+
 ***Complexities:***
 
 n = targetSum
@@ -75,10 +83,13 @@ using namespace std;
 
 bool canSum( int targetSum, vector<int> &numbers, map< int, bool > &holder )
 {
+    //memoization look-up
     if( holder.find( targetSum ) != holder.end() )
     {
         return holder[ targetSum ];
     }
+
+    //base case
     if( targetSum == 0 )
     {
         return true;
@@ -88,6 +99,7 @@ bool canSum( int targetSum, vector<int> &numbers, map< int, bool > &holder )
         return false;
     }
 
+    //recursion case
     for( int i = 0; i < numbers.size(); i++ )
     {
         int remainder = targetSum - numbers[i];
@@ -96,14 +108,16 @@ bool canSum( int targetSum, vector<int> &numbers, map< int, bool > &holder )
       
         if( verdict == true )
         {
-            holder.insert( { targetSum, true } ); ??
+            //holder.insert( { remainder, true } );
+            //return holder[remainder];
+            // can choose to not do this, because we immediately end the program once we find the true value
 
             return true;
         }
     }
 
     holder.insert( { targetSum, false } );
-    return false;
+    return holder[targetSum];
 }
 
 int main()
@@ -127,6 +141,9 @@ int main()
     return 0;
 }
 ```
+***Issues:***
+
+No issues
 
 ***Complexities:***
 
@@ -180,6 +197,9 @@ int main()
     return 0;
 }
 ```
+***Issues:***
+
+No issues
 
 ***Complexities:***
 
