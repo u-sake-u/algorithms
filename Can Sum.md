@@ -40,11 +40,14 @@ bool canSum( int targetSum, vector<int> &numbers)
 
 int main()
 {
+    //input
     vector<int> numbers = { 7, 14 };
     int targetSum = 300;
 
+    //function call
     bool verdict = canSum( targetSum, numbers );
     
+    //parsing
     if( verdict == true )
     {
         cout << "It's possible" << endl;
@@ -116,19 +119,25 @@ bool canSum( int targetSum, vector<int> &numbers, map< int, bool > &holder )
         }
     }
 
+    //memoization
     holder.insert( { targetSum, false } );
+
     return holder[targetSum];
 }
 
 int main()
 {
+    //input
     vector<int> numbers = { 7, 14 };
     int targetSum = 300;
 
+    //map object
     map< int, bool > holder;
 
+    //function call
     bool verdict = canSum( targetSum, numbers, holder );
     
+    //parsing
     if( verdict == true )
     {
         cout << "It's possible" << endl;
@@ -163,13 +172,17 @@ using namespace std;
 
 int main()
 {
+    //input
     vector<int> holder = { 7, 14 };
     int targetSum = 300;
 
+    //DP table
     vector<bool> table( targetSum + 1, false );    
 
+    //base case
     table[ 0 ] = true;
 
+    //iteration logic
     for( int i = 0; i <= table.size(); i++ )
     {
         if ( table[ i ] == true )
@@ -184,6 +197,7 @@ int main()
         }
     }
 
+    //parsing
     bool verdict = table.back();
     if( verdict == true )
     {
