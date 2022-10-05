@@ -34,6 +34,10 @@ int main()
 }
 ```
 
+***Issues:***
+
+- No Issues
+
 ***Complexities:***
 
 - *Time*: O( n )
@@ -191,6 +195,10 @@ int main()
     return 0;
 }
 ```
+
+***Issues:***
+
+- No Issues
 
 ***Complexities:***
 

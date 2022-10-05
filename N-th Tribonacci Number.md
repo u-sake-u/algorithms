@@ -11,10 +11,13 @@ using namespace std;
 
 int main()
 {
+    //input
     int n = 25;
     
+    //cases simplication
     if( n < 3 )
     {
+        //direct case
         if( n == 0 )
         {
             cout << "0";
@@ -26,11 +29,13 @@ int main()
     }
     else
     {
+        //base case
         int a = 0;
         int b = 1;
         int c = 1;
         int d = 0;
     
+        //iteration logic
         for( int i = 3; i <= n; i++ )
         {
             d = a + b + c;
@@ -39,12 +44,17 @@ int main()
             c = d;
         }   
         
+        //parsing
         cout << d;
     }
     
     return 0;
 }
 ```
+
+***Issues:***
+
+- No Issues
 
 ***Complexities:***
 
@@ -76,16 +86,23 @@ int trib( int n )
 
 int main()
 {
+    //input
     int n = 25;
     
+    //function call
     int result = trib( n );
     
+    //parsing
     cout << result;
     
     return 0;
 }
 ```
 
+***Issues:***
+
+- works for small test cases: 3, 4, 5, 10
+- stack overflows or program takes a lot of time for large test cases: 45, 60, 70
 
 ***Complexities:***
 
@@ -102,10 +119,12 @@ using namespace std;
 
 int trib( int n, map< int, int > &mapper )
 {
+    //memoization look-up
     if( mapper.find( n ) != mapper.end() )
     {
         return mapper[n];
     }
+
     //base case
     if( n == 0 )
     {
@@ -118,6 +137,8 @@ int trib( int n, map< int, int > &mapper )
     
     //recursion step
     int value =  trib( n - 1, mapper ) + trib( n - 2, mapper ) + trib( n - 3, mapper );
+
+    //memoization
     mapper.insert( { n, value } );
     
     return mapper[n];
@@ -125,17 +146,25 @@ int trib( int n, map< int, int > &mapper )
 
 int main()
 {
+    //input
     int n = 40;
     
+    //map object
     map< int, int > mapper;
     
+    //function call
     int result = trib( n, mapper );
     
+    //parsing
     cout << result;
     
     return 0;
 }
 ```
+
+***Issues***
+
+- No Issues
 
 ***Complexities:***
 
@@ -152,6 +181,7 @@ using namespace std;
 
 int main()
 {
+    //
     int n = 2;
     
     vector<int> holder( n + 1, 0 );
@@ -184,6 +214,10 @@ int main()
     return 0;
 }
 ```
+
+***Issues***
+
+- No Issues
 
 ***Complexities:***
 
