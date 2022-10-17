@@ -4,7 +4,7 @@
 
 ## 1) Simple Recursion
 
-```
+```cpp
 #include<iostream>
 
 using namespace std;
